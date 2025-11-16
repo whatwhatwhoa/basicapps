@@ -1,0 +1,121 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.calculator {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.45);
+}
+
+.display {
+  background: #0b1224;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: right;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+button {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  background: #1f2937;
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button.operator {
+  background: #2563eb;
+  color: #e5e7eb;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.button-wide {
+  grid-column: span 2;
+}
+
+.utility-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #a5b4fc;
+  min-height: 1.2rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: #f1f5f9;
+    color: #0f172a;
+  }
+
+  .calculator {
+    background: #ffffff;
+    border-color: #e5e7eb;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+  }
+
+  .display {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  button {
+    background: #e5e7eb;
+    color: #0f172a;
+  }
+
+  button.operator {
+    background: #2563eb;
+    color: #f8fafc;
+  }
+}
