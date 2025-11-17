@@ -1,3 +1,8 @@
+const CACHE_NAME = 'calculator-pwa-v3';
+const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, '');
+const OFFLINE_URLS = ['', 'index.html', 'manifest.json'].map((path) =>
+  new URL(path, self.location.origin + BASE_PATH).toString()
+);
 const CACHE_NAME = 'calculator-pwa-v2';
 const OFFLINE_URLS = [
   '/',
@@ -28,6 +33,16 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  const requestUrl = new URL(event.request.url);
+
+  if (requestUrl.origin !== self.location.origin || !requestUrl.pathname.startsWith(BASE_PATH)) {
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
@@ -37,6 +52,13 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           return response;
         })
+        .catch(async () => {
+          if (event.request.mode === 'navigate') {
+            return caches.match(new URL('index.html', self.location.origin + BASE_PATH).toString());
+          }
+
+          return caches.match(new URL('', self.location.origin + BASE_PATH).toString());
+        });
         .catch(() => caches.match('/index.html'));
     })
   );

@@ -4,6 +4,8 @@ This repository contains a minimal React/Vite progressive web app that provides 
 
 👉 If you are browsing this repository on GitHub, you can launch the hosted PWA directly at: https://your-org.github.io/basicapps/
 
+> Replace `your-org` with your GitHub user or organization name once GitHub Pages is enabled for this repository.
+
 ## Installation (GitHub workflow)
 
 1. Clone the repository:
@@ -22,6 +24,18 @@ This repository contains a minimal React/Vite progressive web app that provides 
    npm run preview
    ```
 4. Deploy the contents of `client/dist` to your preferred static host. Make sure service workers and the manifest are served from the web root so the PWA can register correctly. All icons are inlined (no binary assets required), and the service worker caches the app shell for offline use once it has been loaded once.
+
+### Deploying to GitHub Pages
+
+1. Build the client:
+   ```bash
+   cd client
+   npm install
+   npm run build
+   ```
+2. In the repository settings, enable **Pages** using the `client/dist` folder (or the branch/folder where you publish the build output).
+3. Confirm the public URL follows the pattern `https://<your-org>.github.io/basicapps/` (or the repository name if different).
+4. Verify offline readiness by visiting the page once online—static assets are cached by the service worker for subsequent offline access.
 
 ## iOS “Add to Home Screen”
 
