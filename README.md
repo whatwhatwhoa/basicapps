@@ -33,8 +33,8 @@ This repository contains a minimal React/Vite progressive web app that provides 
    npm install
    npm run build
    ```
-2. In the repository settings, enable **Pages** using the `client/dist` folder (or the branch/folder where you publish the build output). When selecting the folder source, choose the `client` build output so that `index.html`, `manifest.json`, and `service-worker.js` live at the same level.
-3. Confirm the public URL follows the pattern `https://<your-org>.github.io/basicapps/` (or `https://<your-org>.github.io/<repo-name>/` if the repository name differs). The Vite `base` is already set to `./`, so the app will work from this subpath.
+2. In the repository settings, enable **Pages** using the `client/dist` folder (or the branch/folder where you publish the build output).
+3. Confirm the public URL follows the pattern `https://<your-org>.github.io/basicapps/` (or the repository name if different).
 4. Verify offline readiness by visiting the page once online—static assets are cached by the service worker for subsequent offline access.
 
 ## iOS “Add to Home Screen”

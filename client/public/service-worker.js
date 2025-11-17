@@ -3,6 +3,16 @@ const BASE_PATH = self.location.pathname.replace(/service-worker\.js$/, '');
 const OFFLINE_URLS = ['', 'index.html', 'manifest.json'].map((path) =>
   new URL(path, self.location.origin + BASE_PATH).toString()
 );
+const CACHE_NAME = 'calculator-pwa-v2';
+const OFFLINE_URLS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/src/main.tsx',
+  '/src/App.tsx',
+  '/src/styles.css',
+  '/src/components/Calculator.tsx'
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -33,6 +43,9 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
 
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
       return fetch(event.request)
         .then((response) => {
           const clone = response.clone();
@@ -46,6 +59,7 @@ self.addEventListener('fetch', (event) => {
 
           return caches.match(new URL('', self.location.origin + BASE_PATH).toString());
         });
+        .catch(() => caches.match('/index.html'));
     })
   );
 });
