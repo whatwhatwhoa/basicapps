@@ -2,6 +2,8 @@
 
 This repository contains a minimal React/Vite progressive web app that provides a basic calculator with clipboard utilities.
 
+👉 If you are browsing this repository on GitHub, you can launch the hosted PWA directly at: https://your-org.github.io/basicapps/
+
 ## Installation (GitHub workflow)
 
 1. Clone the repository:
